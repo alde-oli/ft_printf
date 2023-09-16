@@ -1,0 +1,64 @@
+chaine de format = cf (passe en fs dans les fonctions pour etre en anglais)
+
+c = character
+s = string
+p = pointeur en hexa
+d = nb en decimal
+i = int en decimal
+u = decimal à virgule
+x = nb hexa en min
+X = nb hexa en maj
+% = '%'
+
+
+creer des fonctions "ft_*toa" pour convertir les formats 'spdiuxX' en string
+
+ft_printf:
+
+    -effectuer une copie de cf avec ft_strdup
+
+    -si cf
+    {
+        -parcourir cf
+        {
+            -si '%'
+            {
+                -si 'cspdiuxX%'
+                {
+                    -recup la variable x+1 (param 1 est cf) en passée param de ft_printf
+
+                    -utiliser ft_*toa pour les formats qui en ont besoin dont résultat se nomme to_insert
+
+                    -faire une fonction "ft_insert":
+                    {
+                        -split cf du début au niveau de "%*" en n'incluant pas "%*" dans aucune des deux chaines résultantes cf_start et cf_end
+
+                        -ft_strjoin cf_start + to_insert (resultat = cf_start) puis cf_start + cf_end
+
+                        -ne pas oublier de free to_insert ainsi quel'ancienne copie de cf
+                    }
+                -sinon
+                    -à déterminer si %* est invalide (laisser tel quel? supprimer "%*? arreter la fonction? ecrire shrek?)
+                }
+            }
+        }
+        -ft_putstr(cf)
+
+        -stocker ft_strlen(cf)
+
+        -free cf
+
+        retourner la valeur de ft_strlen(cf)
+    }
+
+
+------------------------------------------------------------------------------------------------
+                                  tests
+------------------------------------------------------------------------------------------------
+
+                 111111111
+        123456789012345678
+new_fs "prout prout %c oui|
+       |------------>|    | i
+                     |--->|  strlen(fs - i - 1)     
+    fs "prout prout h|

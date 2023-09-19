@@ -62,3 +62,43 @@ new_fs "prout prout %c oui|
        |------------>|    | i
                      |--->|  strlen(fs - i - 1)     
     fs "prout prout h|
+
+
+------------------------------------------------------------------------------------------------
+                                  flags
+------------------------------------------------------------------------------------------------
+
+avec %d:
+%-10d    rempli d'espaces à droite pour que l'insert fasse 10 de longueur si besoin (si 10 ou plus fait rien)
+%10d     rempli d'espaces à gauche pour que l'insert fasse 10 de longueur si besoin (si 10 ou plus fait rien)
+%.10d    rempli de 0 à gauche pour que l'insert fasse 10 de longueur si besoin(si 1à ou plus fait rien)
+%-10.5d  rempli d'abord de 0 a gauche pour arriver à 5 de longueur si besoin puis remplis d'espaces à droite si besoin pour que total (avec 0) fasse 10 (si deja 10 ou plus fait rien)
+%10.5d   rempli d'abord de 0 a gauche pour arriver à 5 de longueur si besoin puis remplis d'espaces à gauche si besoin pour que total (avec 0) fasse 10 (si deja 10 ou plus fait rien)
+
+avec %c pareil mais '.' inutilisable
+
+avec %s:
+%-10s et %10s pareil que pour %d
+%.10s     limite la longueur du string à 10. si plus que 10 affiche que les 10 premiers caracteres
+%-10.5d   limite d'abord la taille à 5 puis comble d'espaces à gauche pouf raire 10
+%-10.5d   limite d'abord la taille à 5 puis comble d'espaces à droite pouf raire 10
+
+avec %p:
+%-20p et %20p pareil que pour %d
+%.15 rempli de 0 entre 0x et la suite si la suite fait moins que 15 (suite fait 12 en general)
+%-20.15p et %20.5p pareil que pour %d avec la particularité du 0x avant les 0
+
+avec %i:
+pareil que pour %d
+
+avec %u:
+pareil que pour %d
+
+avec %x:
+pareil que pour %d
+
+avec X:
+pareil que pour %d
+
+avec %:
+rien ne fonctionne

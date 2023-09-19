@@ -6,7 +6,7 @@ void    ft_insert_s(char *fs, size_t *i, va_list args)
     char    *to_insert;
     size_t  insert_len;
 
-    if(new_fs = ft_calloc(ft_strlen((const char *)fs, sizeof(char))))
+    if(new_fs = ft_calloc(ft_strlen((const char *)fs), sizeof(char)))
     {
         to_insert = va_arg(args, char *);
         insert_len = ft_strlen(to_insert);

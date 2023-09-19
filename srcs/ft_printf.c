@@ -20,6 +20,7 @@ int    ft_printf(const char *fs, ...)
     {
         ft_putstr(fs_cpy, 0);
         free(fs_cpy);
+        return(i);
     }
-    return(i);
+    return(-42);
 }

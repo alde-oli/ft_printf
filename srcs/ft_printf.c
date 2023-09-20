@@ -19,7 +19,7 @@ int    ft_printf(const char *fs, ...)
     }
     if(fs_cpy)
     {
-        ft_putstr(fs_cpy, 0);
+        ft_putstr_fd(fs_cpy, 0);
         free(fs_cpy);
         return(i);
     }

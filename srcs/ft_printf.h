@@ -10,14 +10,14 @@
 
 int     ft_printf(const char *fs, ...);
 void    ft_process_fs(char *fs, size_t *i, va_list args);
-void    ft_insert_c(fs, i, args);
-void    ft_insert_s(fs, i, args);
-void    ft_insert_p(fs, i, args);
-void    ft_insert_d(fs, i, args);
-void    ft_insert_i(fs, i, args);
-void    ft_insert_u(fs, i, args);
-void    ft_insert_x(fs, i, args);
-void    ft_insert_xup(fs, i, args);
-void    ft_insert_percent(fs, i);
+void    ft_insert_c(char *fs, size_t *i, va_list args);
+void    ft_insert_s(char *fs, size_t *i, va_list args);
+void    ft_insert_p(char *fs, size_t *i, va_list args);
+void    ft_insert_d(char *fs, size_t *i, va_list args);
+void    ft_insert_i(char *fs, size_t *i, va_list args);
+void    ft_insert_u(char *fs, size_t *i, va_list args);
+void    ft_insert_x(char *fs, size_t *i, va_list args);
+void    ft_insert_xup(char *fs, size_t *i, va_list args);
+void    ft_insert_percent(char *fs, size_t *i);
 
 #endif

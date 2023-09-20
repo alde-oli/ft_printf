@@ -21,8 +21,7 @@ static char    *ft_xtoa(unsigned int n)
 
     i = ft_xnbrlen(n);
     hexa = ft_strdup("0123456789abcdef");
-    nx_str = ft_calloc(nx_str + 1, sizeof(char));
-    nx_str[i] = 0;
+    nx_str = ft_calloc(i + 1, sizeof(char));
     i--;
     while (n / 16 != 0 || n % 16 != 0)
     {

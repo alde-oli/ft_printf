@@ -10,7 +10,7 @@ static int  ft_Xnbrlen(unsigned int n)
         len += 1;
         n /= 16;
     }
-    return (len);
+    return(len);
 }
 
 static char    *ft_Xtoa(unsigned int n)
@@ -37,9 +37,9 @@ static char    *ft_Xtoa(unsigned int n)
 int ft_insert_xup(unsigned int u)
 {
 char *uX_str;
-    uX_str = ft_uitoa(u);
-    ft_putstr_fd(uX_str, 0);
-    if(uX_str)
-        free(uX_str);
-    return(ft_Xnbrlen(u));
+uX_str = ft_Xtoa(u);
+ft_putstr_fd(uX_str, 0);
+if(uX_str)
+    free(uX_str);
+return(ft_Xnbrlen(u));
 }

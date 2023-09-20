@@ -36,7 +36,7 @@ static char    *ft_xtoa(unsigned int n)
 int ft_insert_x(unsigned int u)
 {
     char *ux_str;
-    ux_str = ft_uitoa(u);
+    ux_str = ft_xtoa(u);
     ft_putstr_fd(ux_str, 0);
     if(ux_str)
         free(ux_str);

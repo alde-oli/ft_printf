@@ -9,7 +9,7 @@
 # include <stdio.h>
 
 int ft_printf(const char *fs, ...);
-int ft_process_fs(char *fs, size_t *i, va_list args);
+int ft_process_fs(const char *fs, size_t *i, va_list args);
 int ft_insert_c(int c);
 int ft_insert_s(char *s);
 int ft_insert_p(void *p);

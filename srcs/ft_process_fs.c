@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int ft_process_fs(char *fs, size_t *i, va_list args)
+int ft_process_fs(const char *fs, size_t *i, va_list args)
 {
     //flags_t *flags;
     if(fs && i)
@@ -31,4 +31,5 @@ int ft_process_fs(char *fs, size_t *i, va_list args)
         ft_putchar_fd(fs[*i], 0);
         return(1);
     }
+    return(-1);
 }

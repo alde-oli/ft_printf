@@ -19,7 +19,7 @@ static char    *ft_Xtoa(unsigned int n)
     size_t              i;
     char                *hexa;
 
-    i = ft_xnbrlen(n);
+    i = ft_Xnbrlen(n);
     hexa = ft_strdup("0123456789ABCDEF");
     nx_str = ft_calloc(i + 1, sizeof(char));
     nx_str[i] = 0;

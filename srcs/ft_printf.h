@@ -14,7 +14,6 @@ void    ft_insert_c(char *fs, size_t *i, va_list args);
 void    ft_insert_s(char *fs, size_t *i, va_list args);
 void    ft_insert_p(char *fs, size_t *i, va_list args);
 void    ft_insert_d(char *fs, size_t *i, va_list args);
-void    ft_insert_i(char *fs, size_t *i, va_list args);
 void    ft_insert_u(char *fs, size_t *i, va_list args);
 void    ft_insert_x(char *fs, size_t *i, va_list args);
 void    ft_insert_xup(char *fs, size_t *i, va_list args);

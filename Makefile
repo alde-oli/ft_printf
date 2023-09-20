@@ -25,7 +25,7 @@ OBJS = $(SRCS:.c=.o)
 
 libft:
 	@make -C $(LIBFT_DIR)
-	@cp $(LIBFT_DIR)/$(LIBFT) .
+	@cp $(LIBFT_DIR)/$(LIBFT) $(LIBFT)
 	@mv $(LIBFT) $(NAME)
 
 $(NAME): libft $(OBJS)
@@ -35,11 +35,11 @@ all: $(NAME)
 
 clean:
 	$(RM) $(OBJS)
-	@cd $(LIBFT_DIR) && make clean
+	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
-	@cd $(LIBFT_DIR) && make fclean
+	@make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

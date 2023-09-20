@@ -1,31 +1,34 @@
 #include "ft_printf.h"
 
-char    *ft_process_fs(char *fs, size_t *i, va_list args)
+int ft_process_fs(char *fs, size_t *i, va_list args)
 {
+    //flags_t *flags;
     if(fs && i)
     {
         if(fs[*i] == '%')
         {
-            if(fs[*i + 1] == 'c')
-                fs = ft_insert_c(fs, i, args);
-            else if(fs[*i + 1] == 's')
-                fs = ft_insert_s(fs, i, args);
-            else if(fs[*i + 1] == 'p')
-                fs = ft_insert_p(fs, i, args);
-            else if(fs[*i + 1] == 'd')
-                fs = ft_insert_d(fs, i, args);
-            else if(fs[*i + 1] == 'i')
-                fs = ft_insert_d(fs, i, args);
-            else if(fs[*i + 1] == 'u')
-                fs = ft_insert_u(fs, i, args);
-            else if(fs[*i + 1] == 'x')
-                fs = ft_insert_x(fs, i, args);
-            else if(fs[*i + 1] == 'X')
-                fs = ft_insert_xup(fs, i, args);
-            else if(fs[*i + 1] == '%')
-                fs = ft_insert_percent(fs, i);
+            i++;
+            //flags = ft_check_for_flags(char *fs, size_t *i)
+            if(fs[*i] == 'c')
+                return(ft_insert_c(va_arg(args, int)));
+            else if(fs[*i] == 's')
+                return(ft_insert_s(va_arg(args, char *)));
+            else if(fs[*i] == 'p')
+                return(ft_insert_p(va_arg(args, void *)));
+            else if(fs[*i] == 'd')
+                return(ft_insert_d(va_arg(args, int)));
+            else if(fs[*i] == 'i')
+                return(ft_insert_d(va_arg(args, int)));
+            else if(fs[*i] == 'u')
+                return(ft_insert_u(va_arg(args, unsigned int)));
+            else if(fs[*i] == 'x')
+                return(ft_insert_x(va_arg(args, unsigned int)));
+            else if(fs[*i] == 'X')
+                return(ft_insert_xup(va_arg(args, unsigned int)));
+            else if(fs[*i] == '%')
+                return(ft_insert_c('%'));
         }
-        return(fs);
+        ft_putchar_fd(fs[*i], 0);
+        return(1);
     }
-    return(NULL);
 }

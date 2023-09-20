@@ -8,15 +8,14 @@
 # include <string.h>
 # include <stdio.h>
 
-int     ft_printf(const char *fs, ...);
-char    *ft_process_fs(char *fs, size_t *i, va_list args);
-char    *ft_insert_c(char *fs, size_t *i, va_list args);
-char    *ft_insert_s(char *fs, size_t *i, va_list args);
-char    *ft_insert_p(char *fs, size_t *i, va_list args);
-char    *ft_insert_d(char *fs, size_t *i, va_list args);
-char    *ft_insert_u(char *fs, size_t *i, va_list args);
-char    *ft_insert_x(char *fs, size_t *i, va_list args);
-char    *ft_insert_xup(char *fs, size_t *i, va_list args);
-char    *ft_insert_percent(char *fs, size_t *i);
+int ft_printf(const char *fs, ...);
+int ft_process_fs(char *fs, size_t *i, va_list args);
+int ft_insert_c(int c);
+int ft_insert_s(char *s);
+int ft_insert_p(void *p);
+int ft_insert_d(int n);
+int ft_insert_u(unsigned int u);
+int ft_insert_x(unsigned int u);
+int ft_insert_xup(unsigned int u);
 
 #endif

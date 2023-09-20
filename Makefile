@@ -16,8 +16,7 @@ FILES = ft_printf \
         ft_insert_d \
         ft_insert_u \
         ft_insert_x \
-        ft_insert_xup \
-        ft_insert_percent
+        ft_insert_xup
 
 SRCS = $(addprefix ./srcs/, $(addsuffix .c, $(FILES)))
 

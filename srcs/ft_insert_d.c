@@ -1,23 +1,22 @@
 #include "ft_printf.h"
 
-char    *ft_insert_d(char *fs, size_t *i, va_list args)
+static int  ft_nbrlen(int n)
 {
-    char    *new_fs;
-    char    *to_insert;
-    size_t  insert_len;
+    int len;
 
-    to_insert = ft_itoa(va_arg(args, int));
-    insert_len = ft_strlen((const char *)to_insert);
-    new_fs = ft_calloc(ft_strlen((const char *)fs) + insert_len - 1, sizeof(char));
-    if(new_fs && to_insert)
+    len = 1;
+    if (n < 0)
+        len = 2;
+    while (n / 10 != 0)
     {
-        ft_strlcpy(new_fs, fs, *i - 1);
-        ft_strlcpy(&new_fs[*i], to_insert, insert_len);
-        ft_strlcpy(&new_fs[*i + insert_len], &fs[*i + 2], (ft_strlen(fs) - *i - 1));
-        free(fs);
-        free(to_insert);
-        *i += 14;
-        return(new_fs);
+        len += 1;
+        n /= 10;
     }
-    return(NULL);
+    return (len);
+}
+
+int ft_insert_d(int n)
+{
+    ft_putnbr_fd(n, 0);
+    return(ft_nbrlen(n));
 }

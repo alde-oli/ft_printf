@@ -27,10 +27,7 @@ static char *ft_uitoa(unsigned int n)
       dest[i - 1] = '0';
     while (n / 10 != 0 || n % 10 != 0)
     {
-        if(n < 0)
-            dest[i - 1] = -1 * (n % 10) + '0';
-        else
-            dest[i - 1] = n % 10 + '0';
+        dest[i - 1] = n % 10 + '0';
         n /= 10;
         i--;
     }

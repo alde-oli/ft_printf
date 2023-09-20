@@ -21,9 +21,9 @@ void    ft_process_fs(char *fs, size_t *i, va_list args)
             else if(fs[*i + 1] == 'x')
                 ft_insert_x(fs, i, args);
             else if(fs[*i + 1] == 'X')
-                ft_insert_X(fs, i, args);
+                ft_insert_xup(fs, i, args);
             else if(fs[*i + 1] == '%')
-                ft_insert_percent(fs, i, args);
+                ft_insert_percent(fs, i);
         }
     }
 }

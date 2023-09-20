@@ -15,6 +15,7 @@ int    ft_printf(const char *fs, ...)
             ft_process_fs(fs_cpy, &i, args);
             i++;
         }
+        va_end(args);
     }
     if(fs_cpy)
     {

@@ -29,7 +29,7 @@ libft:
 	@mv $(LIBFT) $(NAME)
 
 $(NAME): libft $(OBJS)
-	$(AR) $@ $^
+	$(AR) $(NAME) $(OBJS)
 
 all: $(NAME)
 

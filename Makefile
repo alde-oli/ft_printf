@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-LIBFT_DIR = ./libft
+LIBFT_DIR = ./libft_src
 LIBFT = libft.a
 
 CC = gcc
@@ -25,7 +25,7 @@ OBJS = $(SRCS:.c=.o)
 
 libft:
 	@make -C $(LIBFT_DIR)
-	@cp $(LIBFT_DIR)/$(LIBFT) $(LIBFT)
+	@cp $(LIBFT_DIR)/$(LIBFT) .
 	@mv $(LIBFT) $(NAME)
 
 $(NAME): libft $(OBJS)
@@ -35,11 +35,11 @@ all: $(NAME)
 
 clean:
 	$(RM) $(OBJS)
-	@make -C $(LIBFT_DIR) clean
+	@cd $(LIBFT_DIR) && make clean
 
 fclean: clean
 	$(RM) $(NAME)
-	@make -C $(LIBFT_DIR) fclean
+	@cd $(LIBFT_DIR) && make fclean
 
 re: fclean all
 

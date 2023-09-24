@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static int  ft_nbrlen(unsigned int n)
+static int  ft_unbrlen(unsigned int n)
 {
     size_t len;
 
@@ -13,33 +13,34 @@ static int  ft_nbrlen(unsigned int n)
     return (len);
 }
 
-static char *ft_uitoa(unsigned int n)
+static void	ft_putu(unsigned int nb)
 {
-    char    *dest;
-    size_t     i;
+	char	digit;
 
-    i = ft_nbrlen(n);
-    dest = (char *) malloc(sizeof(char) * (i + 1));
-    if (!dest)
-        return (NULL);
-    dest[i] = 0;
-    if (n == 0)
-      dest[i - 1] = '0';
-    while (n / 10 != 0 || n % 10 != 0)
-    {
-        dest[i - 1] = n % 10 + '0';
-        n /= 10;
-        i--;
-    }
-    return (dest);
+	digit = nb % 10 + 48;
+	nb /= 10;
+	if (nb != 0)
+		writenbr_fd(nb, 0);
+	write(0, &digit, 1);
 }
 
-int ft_insert_u(unsigned int u)
+int ft_insert_u(unsigned int u, t_flags *flags)
 {
-    char *u_str;
-    u_str = ft_uitoa(u);
-    ft_putstr_fd(u_str, 0);
-    if(u_str)
-        free(u_str);
-    return(ft_nbrlen(u));
+    size_t i;
+    i = ft_unbrlen(u);
+    if(flags)
+    {
+        if((size_t)flags->addzeros > i)
+            i = flags->addzeros;
+        if(flags->addspaces > 0)
+            i = ft_putspaces(flags->addspaces, i);
+        if(flags->addzeros > ft_unbrlen(u))
+            ft_putzeros(flags->addzeros, ft_unbrlen(u));
+        ft_putu(u);
+        if(flags->addspaces < 0)
+            i = ft_putspaces(-1 * (flags->addspaces), i);
+    }
+    else
+        ft_putu(u);
+    return(i);
 }

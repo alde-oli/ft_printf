@@ -2,12 +2,12 @@ chaine de format = cf (passe en fs dans les fonctions pour etre en anglais)
 
 c = character
 s = string
-p = pointeur en hexa
+p = pointeur en hexa sous format 0x000000000000
 d = nb en decimal
 i = int en decimal
-u = decimal à virgule
-x = nb hexa en min
-X = nb hexa en maj
+u = int positif en decimal (unsigned int)
+x = nb hexa en min (pris en unsigned int)
+X = nb hexa en maj (pris en unsigned int)
 % = '%'
 
 
@@ -105,3 +105,23 @@ pareil que pour %d
 
 avec %:
 rien ne fonctionne
+
+
+
+flag '#':
+
+-rien avec %c %s %p %d %i %u
+-avec x affiche 0x au début
+-avec X affiche 0X au début
+
+flag ' ':
+-rien avec %c %s %p %u %x %X
+-avec %d et %i si negatif fait rien si positif mets un ' ' avant le nombre
+
+flag '+':
+-rien avec %c %s %p %u %x %X
+-avec %d et %i si negatif fait rien si positif mets un '+' avant le nombre
+
+
+flags avec %d:
+ordre prio = '+'/' ' > '0' > espaces

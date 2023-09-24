@@ -13,32 +13,42 @@ static int  ft_xnbrlen(unsigned int n)
     return (len);
 }
 
-static char    *ft_xtoa(unsigned int n)
+static void	ft_puthexa(unsigned long long p, char **hexa)
 {
-    char                *nx_str;
-    size_t              i;
-    char                *hexa;
+	char    digit;
 
-    i = ft_xnbrlen(n);
-    hexa = ft_strdup("0123456789abcdef");
-    nx_str = ft_calloc(i + 1, sizeof(char));
-    i--;
-    while (n / 16 != 0 || n % 16 != 0)
-    {
-        nx_str[i] = hexa[n % 16];
-        n /= 16;
-        i--;
-    }
-    free(hexa);
-    return(nx_str);
+	digit = (*hexa)[p % 16];
+	p /= 16;
+	if (p != 0)
+		ft_puthexa(p, hexa);
+	write(0, &digit, 1);
 }
 
-int ft_insert_x(unsigned int u)
+int ft_insert_x(unsigned int u, t_flags *flags)
 {
-    char *ux_str;
-    ux_str = ft_xtoa(u);
-    ft_putstr_fd(ux_str, 0);
-    if(ux_str)
-        free(ux_str);
-    return(ft_xnbrlen);
+    size_t  i;
+    char *hexa;
+
+    hexa = ft_strdup("0123456789abcdef");
+    i = ft_xnbrlen(u);
+    if(flags)
+    {
+        if((size_t)flags->addzeros > i)
+            i = flags->addzeros;
+        if(flags->hash)
+            i += 2;
+        if(flags->addspaces > 0)
+            i = ft_putspaces(flags->addspaces, i);
+        if(flags->hash)
+            ft_putstr_fd("0x", 0);
+        if(flags->addzeros > ft_xnbrlen(u))
+            ft_putzeros(flags->addzeros, ft_xnbrlen(u));
+        ft_puthexa(u, &hexa);
+        if(flags->addspaces < 0)
+            i = ft_putspaces(-1 * (flags->addspaces), i);
+    }
+    else
+        ft_puthexa(u, &hexa);
+    free(hexa);
+    return(i);
 }

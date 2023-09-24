@@ -5,7 +5,7 @@ int    ft_printf(const char *fs, ...)
     va_list args;
     size_t  i;
     size_t  printed;
-    size_t  temp;
+    int     temp;
 
     i = 0;
     printed = 0;
@@ -17,7 +17,7 @@ int    ft_printf(const char *fs, ...)
             temp = ft_process_fs(fs, &i, args);
             if(temp < 0)
                 return(temp);
-            printed += temp;
+            printed += (size_t)temp;
             i++;
         }
         va_end(args);

@@ -24,7 +24,7 @@ typedef struct  s_flags
 
 int     ft_printf(const char *fs, ...);
 int     ft_process_fs(const char *fs, size_t *i, va_list args);
-t_flags *ft_check_for_flags(char *fs, size_t *i);
+t_flags *ft_check_for_flags(const char *fs, size_t *i);
 int     ft_insert_c(int c, t_flags *flags);
 int     ft_insert_s(char *s, t_flags *flags);
 int     ft_insert_p(void *p, t_flags *flags);

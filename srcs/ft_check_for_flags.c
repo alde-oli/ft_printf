@@ -32,7 +32,7 @@ static t_flags *ft_check_hsp(char c, size_t *i, t_flags *flags)
     return(flags);
 }
 
-static int ft_check_addspaces(char *fs, size_t *i)
+static int ft_check_addspaces(const char *fs, size_t *i)
 {
     int n;
 
@@ -56,12 +56,12 @@ static int ft_check_addspaces(char *fs, size_t *i)
     return(n);
 }
 
-static int  ft_check_addzeros(char *fs, size_t *i)
+static int  ft_check_addzeros(const char *fs, size_t *i)
 {
     int n;
 
     n = 0;
-    if(fs[*i] = '.')
+    if(fs[*i] == '.')
         *i += 1;
     while(isdigit(fs[*i]))
     {
@@ -74,7 +74,7 @@ static int  ft_check_addzeros(char *fs, size_t *i)
     return(n);
 }
 
-t_flags *ft_check_for_flags(char *fs, size_t *i)
+t_flags *ft_check_for_flags(const char *fs, size_t *i)
 {
     t_flags *flags;
     size_t  i_copy;

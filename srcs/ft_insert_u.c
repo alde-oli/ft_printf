@@ -20,7 +20,7 @@ static void	ft_putu(unsigned int nb)
 	digit = nb % 10 + 48;
 	nb /= 10;
 	if (nb != 0)
-		writenbr_fd(nb, 0);
+		ft_putu(nb);
 	write(0, &digit, 1);
 }
 

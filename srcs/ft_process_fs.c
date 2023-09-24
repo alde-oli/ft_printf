@@ -7,7 +7,7 @@ int ft_process_fs(const char *fs, size_t *i, va_list args)
     {
         if(fs[*i] == '%')
         {
-            *i++;
+            *i += 1;
             flags = ft_check_for_flags(fs, i);
             if(fs[*i] == 'c')
                 return(ft_insert_c(va_arg(args, int), flags));

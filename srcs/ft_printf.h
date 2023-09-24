@@ -32,7 +32,7 @@ int     ft_insert_d(int n, t_flags *flags);
 int     ft_insert_u(unsigned int u, t_flags *flags);
 int     ft_insert_x(unsigned int u, t_flags *flags);
 int     ft_insert_xup(unsigned int u, t_flags *flags);
-int     ft_putspaces(int n, size_t i);
+int  ft_putspaces(int n, size_t i);
 void    ft_putzeros(int n, size_t i);
 
 #endif

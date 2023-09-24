@@ -16,7 +16,10 @@ FILES = ft_printf \
         ft_insert_d \
         ft_insert_u \
         ft_insert_x \
-        ft_insert_xup
+        ft_insert_xup \
+		ft_check_for_flags \
+		ft_putspaces \
+		ft_putzeros
 
 SRCS = $(addprefix ./srcs/, $(addsuffix .c, $(FILES)))
 

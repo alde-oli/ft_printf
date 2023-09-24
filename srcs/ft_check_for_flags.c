@@ -39,13 +39,13 @@ static int ft_check_addspaces(const char *fs, size_t *i)
     n = 0;
     if(fs[*i] == '-')
     {
-        if(isdigit(fs[*i + 1]))
+        if(ft_isdigit(fs[*i + 1]))
         {
             n = -1 * (fs[*i + 1] - '0');
             *i += 2;
         }
     }
-    while(isdigit(fs[*i]))
+    while(ft_isdigit(fs[*i]))
     {
         if(n < 0)
             n = n * 10 - (fs[*i] - '0');
@@ -63,7 +63,7 @@ static int  ft_check_addzeros(const char *fs, size_t *i)
     n = 0;
     if(fs[*i] == '.')
         *i += 1;
-    while(isdigit(fs[*i]))
+    while(ft_isdigit(fs[*i]))
     {
         if(n < 0)
             n = n * 10 - (fs[*i] - '0');

@@ -9,7 +9,7 @@ int ft_insert_s(char *s, t_flags *flags)
     i = ft_strlen(new_s);
     if(flags)
     {
-        if((flags->addzeros) && (flags->addzeros < i))
+        if((flags->addzeros) && ((size_t)flags->addzeros < i))
         {
             i = flags->addzeros;
             new_s[i] = '\0';

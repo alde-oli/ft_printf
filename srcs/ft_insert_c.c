@@ -14,6 +14,6 @@ int ft_insert_c(int c, t_flags *flags)
             i = ft_putspaces(-1 * (flags->addspaces), i);
     }
     else
-        ft_putchar_fd(c, 0);
+        ft_putchar_fd(c, 1);
     return(i);
 }

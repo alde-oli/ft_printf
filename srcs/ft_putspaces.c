@@ -7,7 +7,7 @@ int  ft_putspaces(int n, size_t i)
     j = (size_t)n;
     while((size_t)n > i)
     {
-        ft_putchar_fd(' ', 0);
+        ft_putchar_fd(' ', 1);
         n--;
     }
     return(j);

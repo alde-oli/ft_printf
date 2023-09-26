@@ -21,7 +21,7 @@ static void	ft_puthexa(unsigned long long p, char **hexa)
 	p /= 16;
 	if (p != 0)
 		ft_puthexa(p, hexa);
-	write(0, &digit, 1);
+	write(1, &digit, 1);
 }
 
 int ft_insert_x(unsigned int u, t_flags *flags)
@@ -40,7 +40,7 @@ int ft_insert_x(unsigned int u, t_flags *flags)
         if(flags->addspaces > 0)
             i = ft_putspaces(flags->addspaces, i);
         if(flags->hash)
-            ft_putstr_fd("0x", 0);
+            ft_putstr_fd("0x", 1);
         if(flags->addzeros > ft_xnbrlen(u))
             ft_putzeros(flags->addzeros, ft_xnbrlen(u));
         ft_puthexa(u, &hexa);

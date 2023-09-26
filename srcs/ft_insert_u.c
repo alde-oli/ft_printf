@@ -21,7 +21,7 @@ static void	ft_putu(unsigned int nb)
 	nb /= 10;
 	if (nb != 0)
 		ft_putu(nb);
-	write(0, &digit, 1);
+	write(1, &digit, 1);
 }
 
 int ft_insert_u(unsigned int u, t_flags *flags)

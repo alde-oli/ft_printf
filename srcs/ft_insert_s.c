@@ -16,12 +16,12 @@ int ft_insert_s(char *s, t_flags *flags)
         }
         if(flags->addspaces > 0)
             i = ft_putspaces(flags->addspaces, i);
-        ft_putstr_fd(new_s, 0);
+        ft_putstr_fd(new_s, 1);
         if(flags->addspaces < 0)
             i = ft_putspaces(-1 * (flags->addspaces), i);
     }
     else
-        ft_putstr_fd(s, 0);
+        ft_putstr_fd(s, 1);
     free(new_s);
     return(i);
 }

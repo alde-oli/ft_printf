@@ -30,7 +30,7 @@ int ft_process_fs(const char *fs, size_t *i, va_list args)
             else
                 return(-1);
         }
-        ft_putchar_fd(fs[*i], 0);
+        ft_putchar_fd(fs[*i], 1);
         return(1);
     }
     return(-1);

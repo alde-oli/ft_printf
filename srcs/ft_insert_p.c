@@ -21,18 +21,18 @@ static void	ft_puthexa(unsigned long long p, char **hexa)
 	p /= 16;
 	if (p != 0)
 		ft_puthexa(p, hexa);
-	write(0, &digit, 1);
+	write(1, &digit, 1);
 }
 static void ft_putptr(unsigned long long p)
 {
     char *hexa;
 
     if(!p)
-        ft_putstr_fd("(null)", 0);
+        ft_putstr_fd("(null)", 1);
     else
     {
         hexa = ft_strdup("0123456789abcdef");
-        ft_putstr_fd("0x", 0);
+        ft_putstr_fd("0x", 1);
         ft_puthexa(p, &hexa);
     }
     free(hexa);

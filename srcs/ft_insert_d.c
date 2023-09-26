@@ -18,11 +18,11 @@ static int  ft_nbrlen(int n)
 static void ft_addprefix(t_bool plus, t_bool space, int n)
 {
     if (n < 0)
-		ft_putchar_fd('-', 0);
+		ft_putchar_fd('-', 1);
 	else if(plus)
-        ft_putchar_fd('+', 0);
+        ft_putchar_fd('+', 1);
     else if(space)
-        ft_putchar_fd(' ', 0);
+        ft_putchar_fd(' ', 1);
 }
 
 static int  ft_onemorezero(size_t *i)
@@ -47,13 +47,13 @@ int ft_insert_d(int n, t_flags *flags)
         ft_addprefix(flags->plus, flags->space, n);
         if(flags->addzeros > ft_nbrlen(n))
             ft_putzeros(flags->addzeros, ft_nbrlen(n));
-        ft_putnbr_fd(n, 0);
+        ft_putnbr_fd(n, 1);
         if(flags->addspaces < 0)
             i = ft_putspaces(-1 * flags->addspaces, i + flags->space + flags->plus) - (flags->space + flags->plus);
         if((flags->plus || flags->space))
             i++;
     }
     else
-        ft_putnbr_fd(n, 0);
+        ft_putnbr_fd(n, 1);
     return(i);
 }

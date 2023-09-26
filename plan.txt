@@ -1,4 +1,0 @@
-bon le vieux plan ct de la merde je me fais trop chier à faire pleins de chirurgie de chaine de caracteres
-donc on y va ez mode juste print chaque element de la chaine jusquà %* et quand y a %* on fais skip i à apres
-%* et avant de continuer à print on print le truc à insérer en le convertissant d'abord en chaine de caracteres.
-comme ça en plus apres c'est facile pour les flags j'ai juste à modif la partie à ajouter

@@ -5,12 +5,12 @@ static int  ft_xnbrlen(unsigned int n)
     int len;
 
     len = 1;
-    while (n / 16 != 0)
+    while(n / 16 != 0)
     {
         len += 1;
         n /= 16;
     }
-    return (len);
+    return(len);
 }
 
 static void	ft_puthexa(unsigned long long p, char **hexa)
@@ -19,7 +19,7 @@ static void	ft_puthexa(unsigned long long p, char **hexa)
 
 	digit = (*hexa)[p % 16];
 	p /= 16;
-	if (p != 0)
+	if(p != 0)
 		ft_puthexa(p, hexa);
 	write(1, &digit, 1);
 }

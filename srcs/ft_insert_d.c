@@ -5,19 +5,19 @@ static int  ft_nbrlen(int n)
     int len;
 
     len = 1;
-    if (n < 0)
+    if(n < 0)
         len = 2;
-    while (n / 10 != 0)
+    while(n / 10 != 0)
     {
         len += 1;
         n /= 10;
     }
-    return (len);
+    return(len);
 }
 
 static void ft_addprefix(t_bool plus, t_bool space, int n)
 {
-    if (n < 0)
+    if(n < 0)
 		ft_putchar_fd('-', 1);
 	else if(plus)
         ft_putchar_fd('+', 1);

@@ -64,6 +64,10 @@ flag '+':
 -rien avec %c %s %p %u %x %X
 -avec %d et %i si negatif fait rien si positif mets un '+' avant le nombre
 
-
 flags avec %d:
 ordre prio = '+'/' ' > '0' > espaces
+
+flag '0x'(0567, 067, ....):
+un peu comme flag .x mais pas vraiment.
+-rien avec %c %s %p 
+- .x > 0x

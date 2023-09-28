@@ -6,44 +6,50 @@ static t_flags   *ft_init_flags()
     flags = (t_flags *) malloc(sizeof(t_flags));
     flags->addspaces = 0;
     flags->addzeros = 0;
+    flags->altzero = FALSE;
     flags->hash = FALSE;
     flags->space = FALSE;
     flags->plus = FALSE;
     return(flags);
 }
 
-static t_flags *ft_check_hsp(char c, size_t *i, t_flags *flags)
+static t_flags *ft_check_hsp(const char *fs, size_t *i, t_flags *flags)
 {
-    if(c == '#')
+    while(fs[*i] == '#' || fs[*i] == ' ' || fs[*i] == '+')
     {
-        flags->hash = TRUE;
-        *i += 1;
-    }
-    else if(c == ' ')
-    {
-        flags->space = TRUE;
-        *i += 1;
-    }
-    else if(c == '+')
-    {
-        flags->plus = TRUE;
-        *i += 1;
+        if(fs[*i] == '#')
+        {
+            flags->hash = TRUE;
+            *i += 1;
+        }
+        else if(fs[*i] == ' ')
+        {
+            flags->space = TRUE;
+            *i += 1;
+        }
+        else if(fs[*i] == '+')
+        {
+            flags->plus = TRUE;
+            *i += 1;
+        }
     }
     return(flags);
 }
 
-static int ft_check_addspaces(const char *fs, size_t *i)
+static int ft_check_addspaces(const char *fs, size_t *i, t_flags *flags)
 {
     int n;
 
     n = 0;
-    if(fs[*i] == '-')
+    if(fs[*i] == '-' && ft_isdigit(fs[*i + 1]))
     {
-        if(ft_isdigit(fs[*i + 1]))
-        {
-            n = -1 * (fs[*i + 1] - '0');
-            *i += 2;
-        }
+        n = -1 * (fs[*i + 1] - '0');
+        *i += 2;
+    }
+    else if(fs[*i] == '0')
+    {
+        flags->altzero = TRUE;
+        *i += 1;
     }
     while(ft_isdigit(fs[*i]))
     {
@@ -74,15 +80,15 @@ static int  ft_check_addzeros(const char *fs, size_t *i)
     return(n);
 }
 
-t_flags *ft_check_for_flags(const char *fs, size_t *i)
+t_flags *ft_check_flags(const char *fs, size_t *i)
 {
     t_flags *flags;
     size_t  i_copy;
 
     i_copy = *i;
     flags = ft_init_flags();
-    flags = ft_check_hsp(fs[*i], i, flags);
-    flags->addspaces = ft_check_addspaces(fs, i);
+    flags = ft_check_hsp(fs, i, flags);
+    flags->addspaces = ft_check_addspaces(fs, i, flags);
     flags->addzeros = ft_check_addzeros(fs, i);
     if(!(ft_strchr("cspdiuxXù%%", fs[*i])))
         *i = i_copy;

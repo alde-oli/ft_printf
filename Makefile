@@ -17,7 +17,7 @@ FILES = ft_printf \
         ft_insert_u \
         ft_insert_x \
         ft_insert_xup \
-		ft_check_for_flags \
+		ft_check_flags \
 		ft_putspaces \
 		ft_putzeros
 

@@ -24,12 +24,22 @@ static void	ft_putu(unsigned int nb)
 	write(1, &digit, 1);
 }
 
+static void ft_manage_altzero(t_flags *flags)
+{
+    if(flags->altzero && flags->addzeros < flags->addspaces)
+    {
+        flags->addzeros = flags->addspaces;
+        flags->addspaces = 0;
+    }
+}
+
 int ft_insert_u(unsigned int u, t_flags *flags)
 {
     size_t i;
     i = ft_unbrlen(u);
     if(flags)
     {
+        ft_manage_altzero(flags);
         if((size_t)flags->addzeros > i)
             i = flags->addzeros;
         if(flags->addspaces > 0)

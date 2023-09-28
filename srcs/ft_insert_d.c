@@ -31,6 +31,17 @@ static int  ft_onemorezero(size_t *i)
     return(1);
 }
 
+static void ft_manage_altzero(int n, t_flags *flags)
+{
+    if(flags->altzero && flags->addzeros < flags->addspaces)
+    {
+        flags->addzeros = flags->addspaces;
+        if(n < 0 || flags->plus || flags->space)
+            flags->addzeros -= 1;
+        flags->addspaces = 0;
+    }
+}
+
 int ft_insert_d(int n, t_flags *flags)
 {
     size_t i;
@@ -38,6 +49,7 @@ int ft_insert_d(int n, t_flags *flags)
     i = ft_nbrlen(n);
     if(flags)
     {
+        ft_manage_altzero(n, flags);
         if((size_t)flags->addzeros > i)
             i = flags->addzeros;
         if((size_t)flags->addzeros == i && n < 0)

@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 19:35:44 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/30 19:46:04 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:08:13 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,59 +15,57 @@
 static int	ft_hex_nbrlen(unsigned int nbr);
 static int	putnbr_hex(unsigned int nbr, char *base);
 
-int	print_x(t_flags flags, unsigned int nbr)
+int	print_x(t_flags f, unsigned int nbr)
 {
 	const int	nbr_len = ft_hex_nbrlen(nbr);
 	int			count;
-	int			total_len;
+	int			total;
 
 	count = 0;
-	if (nbr_len > flags.prec)
-		total_len = nbr_len;
-	else
-		total_len = flags.prec;
-	total_len += flags.is_h * 2;
-	if (flags.width > total_len && flags.sp_side == 0)
-		count += print_padding(flags.width - total_len,
-				'0' * flags.pad_z + ' ' * !flags.pad_z);
-	if (flags.is_h && nbr != 0)
+	total = (nbr_len > f.prec) * nbr_len + !(nbr_len > f.prec) * f.prec;
+	total += f.is_h * 2 - 1 * (nbr == 0 && f.prec == 0);
+	if (f.width > total && f.sp_side == 0 && (!f.pad_z || f.prec != -1))
+		count += print_padding(f.width - total, ' ');
+	if (f.width > total && f.sp_side == 0 && f.pad_z && f.prec == -1)
+		count += print_padding(f.width - total, '0');
+	if (f.is_h && nbr != 0)
 		count += write(1, "0x", 2);
-	while (flags.prec > nbr_len)
+	while (f.prec > nbr_len)
 	{
 		count += write(1, "0", 1);
-		flags.prec--;
+		f.prec--;
 	}
-	count += putnbr_hex(nbr, "0123456789abcdef");
-	if (flags.width > total_len && flags.sp_side == 1)
-		count += print_padding(flags.width - total_len, ' ');
+	if (!(nbr == 0 && f.prec == 0))
+		count += putnbr_hex(nbr, "0123456789abcdef");
+	if (f.width > total && f.sp_side == 1)
+		count += print_padding(f.width - total, ' ');
 	return (count);
 }
 
-int	print_x_up(t_flags flags, unsigned int nbr)
+int	print_x_up(t_flags f, unsigned int nbr)
 {
 	const int	nbr_len = ft_hex_nbrlen(nbr);
 	int			count;
-	int			total_len;
+	int			total;
 
 	count = 0;
-	if (nbr_len > flags.prec)
-		total_len = nbr_len;
-	else
-		total_len = flags.prec;
-	total_len += flags.is_h * 2;
-	if (flags.width > total_len && flags.sp_side == 0)
-		count += print_padding(flags.width - total_len,
-				'0' * flags.pad_z + ' ' * !flags.pad_z);
-	if (flags.is_h && nbr != 0)
+	total = (nbr_len > f.prec) * nbr_len + !(nbr_len > f.prec) * f.prec;
+	total += f.is_h * 2 - 1 * (nbr == 0 && f.prec == 0);
+	if (f.width > total && f.sp_side == 0 && (!f.pad_z || f.prec != -1))
+		count += print_padding(f.width - total, ' ');
+	if (f.width > total && f.sp_side == 0 && f.pad_z && f.prec == -1)
+		count += print_padding(f.width - total, '0');
+	if (f.is_h && nbr != 0)
 		count += write(1, "0X", 2);
-	while (flags.prec > nbr_len)
+	while (f.prec > nbr_len)
 	{
 		count += write(1, "0", 1);
-		flags.prec--;
+		f.prec--;
 	}
-	count += putnbr_hex(nbr, "0123456789ABCDEF");
-	if (flags.width > total_len && flags.sp_side == 1)
-		count += print_padding(flags.width - total_len, ' ');
+	if (!(nbr == 0 && f.prec == 0))
+		count += putnbr_hex(nbr, "0123456789ABCDEF");
+	if (f.width > total && f.sp_side == 1)
+		count += print_padding(f.width - total, ' ');
 	return (count);
 }
 

@@ -1,45 +1,44 @@
-NAME = ft_printf_test
+NAME = libftprintf.a
 
-CXX = cc
-CXXFLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INC_PATH)
+TEST_FLAGS = -I$(INC_PATH)
 
-SRCDIR = src
-INCDIR = include
-OBJDIR = obj
+SRC_PATH = src/
+INC_PATH = include/
+LIBFT_PATH = libft/
 
-GREEN = \033[0;32m
-BLUE = \033[0;34m
-VIOLET = \033[0;35m
-BOLD = \033[1m
-NC = \033[0m
+SRC = $(wildcard $(SRC_PATH)*.c)
+INC = $(wildcard $(INC_PATH)*.h)
+LIBFT = $(LIBFT_PATH)libft.a
 
-SOURCES = $(wildcard $(SRCDIR)/*.c)
-OBJECTS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SOURCES))
+OBJ = $(SRC:.c=.o)
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
+bonus: all
 
-$(NAME): $(OBJDIR) $(OBJECTS)
-	@echo -e "$(GREEN)$(BOLD)[ ok ] files compiled$(NC)"
-	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJECTS) -I$(INCDIR)
-	@echo -e "$(BLUE)$(BOLD)[ ok ] $(NAME) created$(NC)"
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+	ranlib $(NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
+%.o: %.c $(INC)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_PATH)
+
+test: $(NAME)
+	$(CC) $(TEST_FLAGS) main.c -o test -L. -lftprintf
 
 clean:
-	@rm -rf $(OBJDIR)
-	@echo -e "$(VIOLET)$(BOLD)obj files deleted$(NC)"
+	$(MAKE) -C $(LIBFT_PATH) clean
+	rm -f $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo -e "$(VIOLET)$(BOLD)program deleted$(NC)"
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all
 
-run: re
-	@./$(NAME)
-
-.PHONY: all clean fclean re run
+.PHONY: all bonus clean fclean re

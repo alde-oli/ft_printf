@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 16:19:02 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/30 20:24:54 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:22:23 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ static int	set_prec(const char *fs, t_flags *flags)
 	int	i;
 
 	i = 1;
-	if (fs[i] >= '0' && fs[i] <= '9')
-		flags->prec = 0;
+	flags->prec = 0;
 	while (fs[i] >= '0' && fs[i] <= '9')
 	{
 		flags->prec = flags->prec * 10 + (fs[i] - '0');

@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 17:46:52 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/30 17:57:13 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:43:51 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	print_s(t_flags flags, char *str)
 		count += print_padding(flags.width - len, ' ');
 	if (str)
 		count += write(1, str, len);
-	else
-		count += write(1, "(null)", len);
+	else if (flags.prec == -1 || flags.prec >= 6)
+		count += write(1, "(null)", 6);
 	if (flags.width > len && flags.sp_side == 1)
 		count += print_padding(flags.width - len, ' ');
 	return (count);

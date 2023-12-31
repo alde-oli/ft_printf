@@ -6,7 +6,7 @@
 /*   By: alde-oli <alde-oli@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 18:19:12 by alde-oli          #+#    #+#             */
-/*   Updated: 2023/12/30 19:45:16 by alde-oli         ###   ########.fr       */
+/*   Updated: 2023/12/31 13:04:39 by alde-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,29 @@
 static int	ft_nbrlen(int nbr);
 static int	putnbr(int nbr);
 
-int	print_d(t_flags flags, int nbr)
+int	print_d(t_flags f, int nbr)
 {
 	const int	nbr_len = ft_nbrlen(nbr);
-	int			total_len;
+	int			total;
 	int			count;
 
 	count = 0;
-	if (nbr_len > flags.prec)
-		total_len = nbr_len;
-	else
-		total_len = flags.prec;
-	total_len += (nbr < 0 || flags.is_pls || flags.is_sp);
-	if (flags.width > total_len && flags.sp_side == 0)
-		count += print_padding(flags.width - total_len,
-				'0' * flags.pad_z + ' ' * !flags.pad_z);
-	count += print_sign(flags.is_pls, flags.is_sp, nbr < 0);
-	while (flags.prec > nbr_len)
+	total = (nbr_len > f.prec) * nbr_len + !(nbr_len > f.prec) * f.prec;
+	total += (nbr < 0 || f.is_pls || f.is_sp) - 1 * (nbr == 0 && f.prec == 0);
+	if (f.width > total && f.sp_side == 0 && (!f.pad_z || f.prec != -1))
+		count += print_padding(f.width - total, ' ');
+	count += print_sign(f.is_pls, f.is_sp, nbr < 0);
+	if (f.width > total && f.sp_side == 0 && f.pad_z && f.prec == -1)
+		count += print_padding(f.width - total, '0');
+	while (f.prec > nbr_len)
 	{
 		count += write(1, "0", 1);
-		flags.prec--;
+		f.prec--;
 	}
-	count += putnbr(nbr);
-	if (flags.width > total_len && flags.sp_side == 1)
-		count += print_padding(flags.width - total_len, ' ');
+	if (!(nbr == 0 && f.prec == 0))
+		count += putnbr(nbr);
+	if (f.width > total && f.sp_side == 1)
+		count += print_padding(f.width - total, ' ');
 	return (count);
 }
 
